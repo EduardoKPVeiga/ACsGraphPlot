@@ -112,9 +112,41 @@ def plotFQErrorGraph():
     plt.ylim([5500, 7000])
                     
     # plotting the points
-    axisFQ[0].plot(timePHBuffer, fqBuffer1)
-    axisFQ[1].plot(timePHBuffer, fqBuffer2)
-    axisFQ[2].plot(timePHBuffer, fqBuffer3)
+    if len(timePHBuffer) == len(fqBuffer1):
+        axisFQ[0].plot(timePHBuffer, fqBuffer1)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(fqBuffer1):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(fqBuffer1):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisFQ[0].plot(timePHBuffer2, fqBuffer1)
+
+    if len(timePHBuffer) == len(fqBuffer2):
+        axisFQ[1].plot(timePHBuffer, fqBuffer2)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(fqBuffer2):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(fqBuffer2):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisFQ[1].plot(timePHBuffer2, fqBuffer2)
+
+    if len(timePHBuffer) == len(fqBuffer3):
+        axisFQ[2].plot(timePHBuffer, fqBuffer3)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(fqBuffer3):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(fqBuffer3):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisFQ[2].plot(timePHBuffer2, fqBuffer3)
 
     axisFQ[0].axhline(y = avgFQ01, color = 'r', linestyle = 'dashed')
     axisFQ[1].axhline(y = avgFQ02, color = 'r', linestyle = 'dashed')
@@ -181,8 +213,29 @@ def plotPHErrorGraph():
     plt.ylim([9000, 27000])
         
     # plotting the points
-    axisPH[0].plot(timePHBuffer, phBuffer2)
-    axisPH[1].plot(timePHBuffer, phBuffer3)
+    if len(timePHBuffer) == len(phBuffer2):
+        axisPH[0].plot(timePHBuffer, phBuffer2)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(phBuffer2):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(phBuffer2):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisPH[0].plot(timePHBuffer2, phBuffer2)
+    
+    if len(timePHBuffer) == len(phBuffer3):
+        axisPH[1].plot(timePHBuffer, phBuffer3)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(phBuffer3):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(phBuffer3):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisPH[1].plot(timePHBuffer2, phBuffer3)
 
     axisPH[0].axhline(y = avgPH02, color = 'r', linestyle = 'dashed')
     axisPH[1].axhline(y = avgPH03, color = 'r', linestyle = 'dashed')
@@ -242,9 +295,41 @@ def plotRMSErrorGraph():
     plt.ylim([10000, 13500])
         
     # plotting the points
-    axisRMS[0].plot(timePHBuffer, rmsBuffer1)
-    axisRMS[1].plot(timePHBuffer, rmsBuffer2)
-    axisRMS[2].plot(timePHBuffer, rmsBuffer3)
+    if len(timePHBuffer) == len(rmsBuffer1):
+        axisRMS[0].plot(timePHBuffer, rmsBuffer1)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(rmsBuffer1):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(rmsBuffer1):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisRMS[0].plot(timePHBuffer2, rmsBuffer1)
+
+    if len(timePHBuffer) == len(rmsBuffer2):
+        axisRMS[1].plot(timePHBuffer, rmsBuffer2)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(rmsBuffer2):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(rmsBuffer2):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisRMS[1].plot(timePHBuffer2, rmsBuffer2)
+
+    if len(timePHBuffer) == len(rmsBuffer3):
+        axisRMS[2].plot(timePHBuffer, rmsBuffer3)
+    else:
+        timePHBuffer2 = timePHBuffer
+        while len(timePHBuffer2) > len(rmsBuffer3):
+            timePHBuffer2.pop(len(timePHBuffer2) - 1)
+        
+        while len(timePHBuffer2) < len(rmsBuffer3):
+            timePHBuffer2.append(timePHBuffer2[len(timePHBuffer2) - 1] + 1)
+
+        axisRMS[2].plot(timePHBuffer2, rmsBuffer3)
 
     axisRMS[0].axhline(y = avgRMS01, color = 'r', linestyle = 'dashed')
     axisRMS[1].axhline(y = avgRMS02, color = 'r', linestyle = 'dashed')
@@ -318,9 +403,9 @@ def main():
     isAC02 = False
     isPrint = False
     
-    PHSample = 10
-    FQSample = 10
-    RMSSample = 10
+    PHSample = 30
+    FQSample = 30
+    RMSSample = 30
 
     isPH02 = False
     isPH03 = False
@@ -426,13 +511,13 @@ def main():
             if len(acBuffer1) >= 160:
                 plotACGraph()
 
-            if contRMSs >= PHSample:
+            if contRMSs >= RMSSample:
                 plotRMSErrorGraph()
 
             if contPHs >= PHSample:
                 plotPHErrorGraph()
 
-            if contFQs >= PHSample:
+            if contFQs >= FQSample:
                 plotFQErrorGraph()
 
         except UnicodeDecodeError:
